@@ -19,13 +19,17 @@ const scrape = async () => {
       return Array.from(bookElements).map((book) => {
         const title = book.querySelector('h3 a').getAttribute('title');
         const price = book.querySelector('.price_color').textContent;
+
         const stock = book.querySelector('.instock.availability')
           ? 'In Stock'
           : 'Out Of Stock';
+
         const rating = book
           .querySelector('.star-rating')
           .className.split(' ')[1];
+
         const link = book.querySelector('h3 a').getAttribute('href');
+
         return {
           title,
           price,
@@ -37,7 +41,6 @@ const scrape = async () => {
     });
 
     allBooks.push(...books);
-    console.log(`Books on page ${currentPage}: `, books);
     currentPage++;
   }
 
